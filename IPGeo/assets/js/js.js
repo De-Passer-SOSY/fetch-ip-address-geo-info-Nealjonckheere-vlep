@@ -47,13 +47,46 @@ async function ExtraInfo () {
         let data = await geoResponse.json();
 
 
-        display(data);
+        ipdisplay(data);
+        Staddisplay(data);
+        RegioDisplay(data);
+        LandDisplay(data);
+        LocationDisplay(data);
     } catch (error) {
         console.error("Fout bij het ophalen van geolocatie:", error);
     }
 }
 
-function display(data) {
-    const container = document.querySelector("#Hostnaam");
-    container.innerHTML = data.hostname;
+function ipdisplay(data) {
+    const container = document.querySelector("#Ip");
+    container.innerHTML = data.ip;
+
+}
+
+function Staddisplay(data){
+    const container = document.querySelector("#Stad");
+
+    container.innerHTML = data.city;
+
+}
+
+function RegioDisplay(data){
+    const container = document.querySelector("#Regio");
+
+    container.innerHTML = data.region;
+
+}
+
+function LandDisplay(data){
+    const container = document.querySelector("#Land");
+
+    container.innerHTML = data.country;
+
+}
+
+function LocationDisplay(data){
+    const container = document.querySelector("#Loc");
+
+    container.innerHTML = data.loc;
+
 }
