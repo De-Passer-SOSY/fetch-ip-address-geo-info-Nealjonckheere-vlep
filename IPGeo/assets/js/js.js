@@ -64,6 +64,19 @@ async function ZoekData(city, region) {
 
 
 async function WeerDisplay (cordData) {
+    let weerdisplay = await fetch(`https://api.open-meteo.com/v1/forecast?
+    latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,rain&forecast_days=1`)
+    let Weerdata = await weerdisplay.json();
+
+    WeerDisplayInfo(Weerdata);
+}
+
+
+function WeerDisplayInfo (Weerdata) {
+    DisplayTemperatuur(Weerdata);
+    DisplayWindsnelheid(Weerdata);
+    DisplayRegen(Weerdata);
+
 
 }
 
@@ -122,4 +135,23 @@ function latitude (cordData){
 function longitude (cordData){
     const container = document.querySelector("#Longitude");
     container.innerHTML = cordData.lon;
+}
+
+function DisplayTemperatuur(Weerdata) {
+    const container = document.querySelector("#Temperature");
+
+    container.innerHTML = Weerdata.temperature_2m;
+}
+
+
+function DisplayWindsnelheid(Weerdata){
+    const container = document.querySelector("#Weather");
+
+    container.innerHTML = Weerdata.wind_speed_10m;
+}
+
+function DisplayRegen(Weerdata){
+    const container = document.querySelector("#Regen");
+
+    container.innerHTML = Weerdata.rain
 }
