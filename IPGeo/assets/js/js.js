@@ -46,6 +46,9 @@ async function ZoekData(city, region) {
         let cordResponse = await fetch(`https://nominatim.openstreetmap.org/search?q=${city},${region}&format=json`);
         let cordData = await cordResponse.json();
 
+
+        WeerDisplay(cordData);
+
         if (cordData.length > 0) {
             let locatie = cordData[0];
             latitude(locatie);
@@ -57,6 +60,11 @@ async function ZoekData(city, region) {
     } catch (error) {
         console.error("Fout bij het ophalen van gegevens:", error);
     }
+}
+
+
+async function WeerDisplay (cordData) {
+
 }
 
 
